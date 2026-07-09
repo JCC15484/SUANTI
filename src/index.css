@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-text-primary font-sans antialiased;
+    background-image: 
+      radial-gradient(ellipse at top, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom right, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-surface;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-surface-light rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted;
+  }
+  
+  ::selection {
+    @apply bg-primary/30 text-text-primary;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-surface/60 backdrop-blur-md border border-border/50 rounded-2xl;
+  }
+  
+  .glow-border {
+    position: relative;
+  }
+  
+  .glow-border::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(34, 211, 238, 0.5), rgba(16, 185, 129, 0.3), transparent);
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-cyan-300 to-emerald-400;
+    background-size: 200% auto;
+  }
+  
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-medium bg-gradient-to-r from-primary to-cyan-500 text-slate-900 
+           hover:shadow-lg hover:shadow-primary/25 hover:-translate-y-0.5 
+           active:translate-y-0 transition-all duration-200 cursor-pointer;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-medium bg-surface text-text-primary border border-border
+           hover:bg-surface-light hover:border-primary/30 transition-all duration-200 cursor-pointer;
+  }
+  
+  .nav-link {
+    @apply px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface 
+           transition-all duration-200 cursor-pointer;
+  }
+  
+  .nav-link-active {
+    @apply text-primary bg-primary/10;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
