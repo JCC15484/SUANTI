@@ -35,11 +35,15 @@ export interface QuestionListItem {
 export interface SubmissionResult {
   id: string;
   problemId: number;
+  problemTitle?: string;
   status: 'correct' | 'wrong';
   userAnswer: string[];
   correctAnswer: string[];
   score: number;
+  difficulty?: Difficulty;
+  type?: QuestionType;
   submittedAt: string;
+  timestamp?: number;
 }
 
 export interface UserProgress {
